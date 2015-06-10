@@ -8,18 +8,20 @@ chmod +x sqlauto.sh
 # Usage
 [+] - SQLAUTO - [+]
 
-[+] - Coded by Matheus Bernardes - [+]
+  [+] - Coded by Matheus Bernardes - [+]
 
-[+] - gambler@tutanota.com  - [+]
+  [+] - gambler@tutanota.com  - [+]
 
-[+] - Modo de uso - [+]
+  [+] - Modo de uso - [+]
 
 [+] - Ataques através de URL (Metodo GET) - [+]
+
 ./sqlauto.sh -get
 
 [+] - Ataques através de Arquivo com Request (Metodo POST) - [+]
+
 ./sqlauto.sh -post
 
-[+] - Menu de ajuda = [+]
-./sqlauto.sh -h
+[+] - Menu de ajuda - [+]
 
+./sqlauto.sh -h
