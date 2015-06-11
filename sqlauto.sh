@@ -29,7 +29,7 @@ function ajuda()
         echo "          $0 -post -tor"
         echo " "
 
-        echo "[+] - Menu de ajuda = [+]"
+        echo "[+] - Menu de ajuda - [+]"
         echo "  $0 -h"
         exit
 }
